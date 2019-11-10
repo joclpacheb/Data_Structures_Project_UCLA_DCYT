@@ -1,9 +1,6 @@
-cmake_minimum_required(VERSION 3.12)
-project(CLION_PROJECTS)
+cmake_minimum_required(VERSION 3.15)
+project(Data_Structures_Project_UCLA_DCYT)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(.)
-
-add_executable(CLION_PROJECTS
-        main.cpp)
+add_executable(Data_Structures_Project_UCLA_DCYT main.cpp)
