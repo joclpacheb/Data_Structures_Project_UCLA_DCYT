@@ -1,11 +1,11 @@
 #ifndef CONTROLADOR_H
 #define CONTROLADOR_H
 
-#include "../Librerias/Genericas/VGeneral.h"
-#include "../Librerias/Lista/Lista.cpp"
+#include "../Libs/Genericas/VGeneral.h"
+#include "../Libs/Lista/Lista.cpp"
 //#include "../Librerias/Pila/Pila.cpp"
 //#include "../Librerias/Cola/Cola.cpp"
-#include "../Modelos/MTablaMultiplicar.h"
+//#include "../Libs/MTablaMultiplicar.h"
 #include <vector>
 
 class Controlador {
