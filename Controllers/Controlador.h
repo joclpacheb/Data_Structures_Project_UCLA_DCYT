@@ -1,5 +1,9 @@
-#ifndef CONTROLADOR_H
-#define CONTROLADOR_H
+//
+// Created by dany on 11/10/19.
+//
+
+#ifndef DATA_STRUCTURES_PROJECT_UCLA_DCYT_CONTROLADOR_H
+#define DATA_STRUCTURES_PROJECT_UCLA_DCYT_CONTROLADOR_H
 
 #include "../Libs/Genericas/VGeneral.h"
 #include "../Libs/Lista/Lista.cpp"
@@ -15,14 +19,14 @@ private:
     Pila<int> PilaA;
     Cola<int> Cola1;
 
-   // Pila<int> PilaB;
-   // Cola<Pila<int>> Cola2;
+    // Pila<int> PilaB;
+    // Cola<Pila<int>> Cola2;
     MMultiplicador mmul; //pila
     MTablaMultiplicar mtab; //cola
 
-  bool check;
-  // int nro;
-   vector<int> vecnro;
+    bool check;
+    // int nro;
+    vector<int> vecnro;
 public:
     Controlador();
     void CargarLista();
@@ -41,8 +45,12 @@ public:
     void OpcionAyuda();
     void OpcionSalir();
     void Menu();
-   //bool SearchTable(int q);
-  // int Busqueda(int n);
+    //bool SearchTable(int q);
+    // int Busqueda(int n);
 };
 
 #endif
+
+
+
+#endif //DATA_STRUCTURES_PROJECT_UCLA_DCYT_CONTROLADOR_H

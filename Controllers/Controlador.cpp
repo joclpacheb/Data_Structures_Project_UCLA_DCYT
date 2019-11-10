@@ -1,21 +1,23 @@
+//
+// Created by dany on 11/10/19.
+//
+
 #include "Controlador.h"
 
 Controlador::Controlador() {
     this->check = false;
-    //this->nro = 0;
-   // this->vecnro.push_back(0);
 }
 
 void Controlador::CargarLista() {
     vg.Limpiar();
     if (Lista1.Vacia()){
-       // Lista<int> Lista1;
+        // Lista<int> Lista1;
         nodo<int> *ap;
         int valor;
         for(int i=0; i<10;i++) {
             valor = vg.LeerNro("\nIntroduzca un numero: ");
-           // cout << "Introduzca un numero: " << endl;
-           // cin >> valor;
+            // cout << "Introduzca un numero: " << endl;
+            // cin >> valor;
             if (Lista1.Vacia()) {
                 Lista1.InsComienzo(valor);
                 ap=Lista1.ObtPrimero();
@@ -23,7 +25,7 @@ void Controlador::CargarLista() {
             else {
                 Lista1.InsDespues(ap,valor);
                 //ap=ap->ObtProx();
-               ap = Lista1.ObtProx(ap);
+                ap = Lista1.ObtProx(ap);
             }
         }
     }else{
@@ -33,29 +35,29 @@ void Controlador::CargarLista() {
 void Controlador::ImprimirLista() {
     vg.Limpiar();
     if(!Lista1.Vacia()) {
-    nodo<int> *ap;
-    int valor;
-    ap=Lista1.ObtPrimero();
-    while(ap!=NULL) {
-       // valor=ap->ObtInfo(ap);
-       valor = Lista1.ObtInfo(ap);
-        cout << valor <<  " -> ";
-       // ap=ap->ObtDer();
-       ap = Lista1.ObtProx(ap);
-    }
+        nodo<int> *ap;
+        int valor;
+        ap=Lista1.ObtPrimero();
+        while(ap!=NULL) {
+            // valor=ap->ObtInfo(ap);
+            valor = Lista1.ObtInfo(ap);
+            cout << valor <<  " -> ";
+            // ap=ap->ObtDer();
+            ap = Lista1.ObtProx(ap);
+        }
     }else{
         vg.ImprimirMensaje("\n LA LISTA ESTA VACIA \n");
     }
 }
 void Controlador::CargarPila(){
     if(PilaA.Vacia()) {
-    int i,valor;
-    for(i=0;i<10;i++){
-        //cout << "Ingresar 10 numeros: ";
-        //cin >> valor;
-        valor = vg.LeerNro("\nIntroduzca un numero: ");
-        PilaA.Insertar(valor);
-    }
+        int i,valor;
+        for(i=0;i<10;i++){
+            //cout << "Ingresar 10 numeros: ";
+            //cin >> valor;
+            valor = vg.LeerNro("\nIntroduzca un numero: ");
+            PilaA.Insertar(valor);
+        }
     }else {
         vg.ImprimirMensaje("\n LA PILA YA FUE CARGADA \n");
     }
@@ -66,7 +68,7 @@ void Controlador::ImprimirPila(){
         Pila<int> PilaAux;
         do {
             PilaA.Remover(valor);
-          //  cout << valor << endl;
+            //  cout << valor << endl;
             PilaAux.Insertar(valor);
         } while (!PilaA.Vacia());
         do {
@@ -83,7 +85,7 @@ void Controlador::CargarCola(){
         int i, valor;
         for(i=1;i<10;i++){
             valor = vg.LeerNro("\nIntroduzca un numero: ");
-                Cola1.Insertar(valor);
+            Cola1.Insertar(valor);
         }
     }else{
         vg.ImprimirMensaje("\n LA COLA YA FUE CARGADA \n");
@@ -170,28 +172,28 @@ void Controlador::ImprimirTabla() {
 }*/
 void Controlador::BorrarTabla(){
     if (!mtab.Empty()) {
-    int e;
-   // Numeros nro;
-    mmul.SetNum(-1);
-    e = vg.LeerValidarNro("   Seleccione la tabla que desea eliminar (1-10): ", 1, 10);
-    //this->vecnro.push_back(e);
-    //SearchTable(e);
-    if(mtab.SearchTable(e)){
-        mtab.InsertStack(mmul);
-        mtab.RemoveStack(mmul);
-        while(mmul.GetNum()!=-1){
-            if(mmul.GetNum()==e) {
-                mtab.RemoveStack(mmul);
-            }else if(mmul.GetNum()!=-1){
-                mtab.InsertStack(mmul);
-                mtab.RemoveStack(mmul);
+        int e;
+        // Numeros nro;
+        mmul.SetNum(-1);
+        e = vg.LeerValidarNro("   Seleccione la tabla que desea eliminar (1-10): ", 1, 10);
+        //this->vecnro.push_back(e);
+        //SearchTable(e);
+        if(mtab.SearchTable(e)){
+            mtab.InsertStack(mmul);
+            mtab.RemoveStack(mmul);
+            while(mmul.GetNum()!=-1){
+                if(mmul.GetNum()==e) {
+                    mtab.RemoveStack(mmul);
+                }else if(mmul.GetNum()!=-1){
+                    mtab.InsertStack(mmul);
+                    mtab.RemoveStack(mmul);
+                }
             }
+            vg.ImprimirMensaje("\n TABLA ELIMINADA EXITOSAMENTE \n");
+        }else{
+            cout<<"LA TABLA NO EXISTE\n\n"<<endl;
         }
-        vg.ImprimirMensaje("\n TABLA ELIMINADA EXITOSAMENTE \n");
-    }else{
-        cout<<"LA TABLA NO EXISTE\n\n"<<endl;
-    }
- 
+
     } else {
         vg.ImprimirMensaje("\n LA TABLA ESTA VACIA \n");
     }
@@ -275,7 +277,7 @@ void Controlador::OpcionTabla(){
     int opc;
     VGeneral  vg;
     Controlador c;
-  //  vg.Pausa();
+    //  vg.Pausa();
     do
     {
         vg.Limpiar();
