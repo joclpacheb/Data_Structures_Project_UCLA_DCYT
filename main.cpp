@@ -1,4 +1,4 @@
-#include "Controlador/Controlador.h"
+#include "Controllers/Controlador.h"
 int main(){
     Controlador c;
     VGeneral vg;
