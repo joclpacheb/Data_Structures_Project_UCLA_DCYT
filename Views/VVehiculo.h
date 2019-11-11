@@ -5,10 +5,11 @@
 #ifndef DATA_STRUCTURES_PROJECT_UCLA_DCYT_VVEHICULO_H
 #define DATA_STRUCTURES_PROJECT_UCLA_DCYT_VVEHICULO_H
 
-
-class VVehiculo {
+#include "../Libs/Genericas/VGeneral.h"
+class VVehiculo: public VGeneral  {
+public:
+    VVehiculo();
 
 };
-
 
 #endif //DATA_STRUCTURES_PROJECT_UCLA_DCYT_VVEHICULO_H
