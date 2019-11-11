@@ -1,7 +1,7 @@
 #ifndef DATA_STRUCTURES_PROJECT_UCLA_DCYT_MVEHICULO_H
 #define DATA_STRUCTURES_PROJECT_UCLA_DCYT_MVEHICULO_H
 
-#include "../Librerias/Pila/Pila.cpp"
+#include "../Libs/Pila/Pila.cpp"
 
 class MVehiculo {
 
@@ -12,15 +12,17 @@ private:
     //en función de ello tiene un espacio que ocupa en la bahía en la que se encuentre...
     float tanque;
 
-    Pila <int> pilaHoras;
+    Pila <int> PilaHoras;
 
 public:
-
+    MVehiculo();
     Pila <int> GetPilaHoras() const;
     MVehiculo(int tipo);
     ~MVehiculo();
-    void InsertTime(int n) ;
-    void RemoveTime(int &n)bool Empty();
+    void InsertTime(int n);
+    void RemoveTime(int &n);
+    bool Empty();
+    bool Full();
     int GetTipo();
     int GetEspacio();
     float GetTanque();
