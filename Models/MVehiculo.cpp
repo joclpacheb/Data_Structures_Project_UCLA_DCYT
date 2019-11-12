@@ -31,7 +31,6 @@ int MVehiculo::GetEspacio(){
 void  MVehiculo::SetTipo(int ti){
     tipo=ti;
 }
-
 void MVehiculo::SetEspacio(int e){
     espacio=e;
 }

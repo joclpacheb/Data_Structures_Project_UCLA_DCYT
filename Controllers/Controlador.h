@@ -15,6 +15,11 @@ private:
     VEstacion vest;
 public:
     Controlador();
+    void Menu();
+    void OpcionBahia();
+    void OpcionVehiculo();
+    void OpcionAyuda();
+    void OpcionSalir();
 };
 
 #endif //DATA_STRUCTURES_PROJECT_UCLA_DCYT_CONTROLADOR_H

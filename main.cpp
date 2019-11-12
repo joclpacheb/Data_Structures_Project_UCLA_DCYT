@@ -12,9 +12,9 @@ vehículo, placa, cantidad de combustible en litros y Bs., y el tiempo en cola.
 
 #include "Controllers/Controlador.h"
 int main(){
-  //  Controlador c;
-   // VGeneral vg;
-    //vg.Pausa();
-   // c.Menu();
+    Controlador c;
+    VGeneral vg;
+    vg.Pausa();
+    c.Menu();
     return 0;
 }
