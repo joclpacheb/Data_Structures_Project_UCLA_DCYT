@@ -15,9 +15,67 @@ void Controlador::CargarBahias() {
             mbah.SetNumeroB(i);
             mest.InicializarBahia(mbah);
         }
-        vest.ImprimirMensaje("\n ¡BAHIAS CARGADAS EXITOSAMENTE! \n");
+        vest.ImprimirMensaje("\n ¡Bahías cargadas exitosamente! \n");
     }else{
-        vest.ImprimirMensaje("\n ¡LAS BAHIAS YA FUERON CARGADAS!\n");
+        vest.ImprimirMensaje("\n ¡Las bahías ya fueron cargadas!\n");
+    }
+}
+
+//============================================================
+//                  VEHICLE METHODS                         ||
+//============================================================
+void Controlador::AddCarToQueue() { //añadir vehículo a cola
+    if (!mest.Empty()) {
+        int numbahia, numcola;
+        numbahia = vest.LeerValidarNro("\n  ¿A cuál bahía quieres pasar? (1-2) : ",1,2);
+        mbah = mest.GetBahia(numbahia);
+        numcola = vest.LeerValidarNro("\n  ¿Cola 1.Derecha o 2.Izquierda? (1-2) : ",1,2);
+        if(numcola == 1){
+            mbah.RInsertVehicle(mveh);
+            mest.SetBahia(numcola,mbah);
+        }else{
+            mbah.LInsertVehicle(mveh);
+            mest.SetBahia(numcola,mbah);
+        }
+        vest.ImprimirMensaje("\n Vehículo procesado en cola \n");
+    }else{
+        vest.ImprimirMensaje("\n ¡Error! Bahías fuera de servicio. \n");
+    }
+}
+void Controlador::ProcessVehicleInQueue() { //procesar vehiculo en cola.
+    if (!mest.Empty()) {
+        long numcaja, numcola;
+        numcaja = vest.LeerValidarNro("\n  ¿Cuál bahía quieres procesar? (1-2) : ",1,2);
+        numcola = vest.LeerValidarNro("\n  ¿Cola 1.Derecha o 2.Izquierda? (1-2) : ",1,2);
+        if(numcola == 1){
+            do{
+                //Cola por la derecha
+                mbah = mest.GetBahia(numcaja);
+                if (mbah.ProcessVehicle() == true){ // I need to implement that method in Mbahia
+                    mest.SetBahia(numcaja,mbah);
+                    mbah.RRemoveVehicle(mveh);
+                    vest.ImprimirMensaje("\n Vehículos procesados con exito! \n");
+                }else{
+                    vest.ImprimirMensaje("\n No hay más vehículos que procesar! \n");
+                }
+                numcaja = vest.LeerValidarNro("\n  Qué bahía quieres procesar? (1,2) 3 para salir : ",1,2);
+            }while(numcaja != 3);
+        }else{
+            //cola por la izquierda
+            do{
+                mbah = mest.GetBahia(numcaja);
+                if (mbah.ProcessVehicle() == true){ // I need to implement that method in Mbahia
+                    mest.SetBahia(numcaja,mbah);
+                    mbah.LRemoveVehicle(mveh);
+                    vest.ImprimirMensaje("\n Vehículos procesados con exito! \n");
+                }else{
+                    vest.ImprimirMensaje("\n No hay más vehículos que procesar! \n");
+                }
+                numcaja = vest.LeerValidarNro("\n  Qué bahía quieres procesar? (1,2) 3 para salir : ",1,2);
+            }while(numcaja != 3);
+        }
+    }else{
+        vest.ImprimirMensaje("\n ¡Error! Bahías fuera de servicio. \n");
     }
 }
 
@@ -74,7 +132,7 @@ void Controlador::OpcionBahia(){
         vg.ImprimirMensaje("   3. Consultar Bahía\n");
         vg.ImprimirMensaje("   4. Eliminar Bahía\n");
         vg.ImprimirMensaje("   5. Volver al menú anterior\n");
-        opc = vg.LeerValidarNro("   Seleccione su opción (1-5): ",1,3);
+        opc = vg.LeerValidarNro("   Seleccione su opción (1-5): ",1,5);
         switch (opc)
         {
             case 1: CargarBahias();
@@ -103,10 +161,10 @@ void Controlador::OpcionVehiculo(){
         vg.ImprimirMensaje("   2. Consultar Vehículo\n");
         vg.ImprimirMensaje("   3. Eliminar Vehículo\n");
         vg.ImprimirMensaje("   4. Volver al menú anterior\n");
-        opc = vg.LeerValidarNro("   Seleccione su opción (1-4): ",1,3);
+        opc = vg.LeerValidarNro("   Seleccione su opción (1-4): ",1,4);
         switch (opc)
         {
-            case 1: //IncluirVehiculo();
+            case 1: AddCarToQueue();
                 break;
             case 2: //ConsultarVehiculo();
                 break;
