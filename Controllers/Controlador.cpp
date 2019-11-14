@@ -54,13 +54,17 @@ void Controlador::OpcionBahia(){
         opc = vg.LeerValidarNro("   Seleccione su opción (1-3): ",1,3);
         switch (opc)
         {
-            case 1:
+            case 1: //IncluirBahia();
                 break;
-            case 2:
+            case 2: //ModificarBahia();
+                break;
+            case 3: //ConsultarBahia();
+                break;
+            case 4: //EliminarBahia();
                 break;
         }
     }
-    while(opc != 3);
+    while(opc != 5);
 }
 void Controlador::OpcionVehiculo(){
     int opc;
@@ -78,18 +82,20 @@ void Controlador::OpcionVehiculo(){
         opc = vg.LeerValidarNro("   Seleccione su opción (1-3): ",1,3);
         switch (opc)
         {
-            case 1:
+            case 1: //IncluirVehiculo();
                 break;
-            case 2:
+            case 2: //ConsultarVehiculo();
+                break;
+            case 3: //EliminarVehiculo();
                 break;
         }
     }
-    while(opc != 3);
+    while(opc != 4);
 }
 void Controlador::OpcionAyuda(){
     vest.ImprimirMensaje("  La opción 1 incluirá, consultará, modificará, y eliminará las bahías en la estación.\n");
     vest.ImprimirMensaje("  La opción 2 incluirá, consultará, y eliminará los vehículos en cola.\n");
-    vest.ImprimirMensaje("  La opción 3 imprimirá un reporte indicando el tipo de vehiculo, placa,"
+    vest.ImprimirMensaje("  La opción 3 imprimirá un reporte indicando el tipo de vehículo, placa,"
                          "cantidad de combustible en litros y Bs. y el tiempo en cola.\n");
     vest.ImprimirMensaje("  Program created by: José Luis Pacheco & Dany Karam.\n");
 }

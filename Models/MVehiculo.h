@@ -18,7 +18,7 @@ public:
     MVehiculo();
     Pila <int> GetPilaHoras() const;
     MVehiculo(int tipo);
-    ~MVehiculo();
+    //~MVehiculo();
     void InsertTime(int n);
     void RemoveTime(int &n);
     bool Empty();

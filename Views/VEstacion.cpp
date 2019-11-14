@@ -4,4 +4,4 @@
 
 #include "VEstacion.h"
 
-
+VEstacion::VEstacion(){}
