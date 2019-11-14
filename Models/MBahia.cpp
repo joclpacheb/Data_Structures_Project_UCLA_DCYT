@@ -8,12 +8,11 @@ MBahia::MBahia() {}
 
 //Queue Methods
 //Right
-void MBahia::RInsertVehicle(MVehiculo mmul){
-    RightQueue.Insertar(mmul);
-    //mmul.SetNum(n);
+void MBahia::RInsertVehicle(MVehiculo mveh){
+    RightQueue.Insertar(mveh);
 }
-void MBahia::RRemoveVehicle(MVehiculo &mmul){
-    RightQueue.Remover(mmul);
+void MBahia::RRemoveVehicle(MVehiculo &mveh){
+    RightQueue.Remover(mveh);
 }
 bool MBahia::REmpty(){
     return RightQueue.Vacia();
@@ -22,12 +21,11 @@ bool MBahia::RFull(){
     return RightQueue.Llena();
 }
 //Left
-void MBahia::LInsertVehicle(MVehiculo mmul){
-    LeftQueue.Insertar(mmul);
-    //mmul.SetNum(n);
+void MBahia::LInsertVehicle(MVehiculo mveh){
+    LeftQueue.Insertar(mveh);
 }
-void MBahia::LRemoveVehicle(MVehiculo &mmul){
-    LeftQueue.Remover(mmul);
+void MBahia::LRemoveVehicle(MVehiculo &mveh){
+    LeftQueue.Remover(mveh);
 }
 bool MBahia::LEmpty(){
     return LeftQueue.Vacia();

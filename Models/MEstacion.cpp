@@ -40,3 +40,9 @@ void MEstacion::SetBahia(int i, MBahia mbah) {
    // aplist->AsigInfo(mbah);
    ListBahia.AsigInfo(aplist, mbah);
 }
+bool MEstacion::Empty(){
+    return ListBahia.Vacia();
+}
+bool MEstacion::Full(){
+    return ListBahia.Llena();
+}

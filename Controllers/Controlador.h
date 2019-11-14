@@ -12,6 +12,10 @@
 
 class Controlador {
 private:
+    MBahia mbah;
+    MEstacion mest;
+    MVehiculo mveh;
+
     VEstacion vest;
 public:
     Controlador();
@@ -20,6 +24,9 @@ public:
     void OpcionVehiculo();
     void OpcionAyuda();
     void OpcionSalir();
+    void IncluirBahia();
+    void CargarBahias();
+    void AddCarToQueue();
 };
 
 #endif //DATA_STRUCTURES_PROJECT_UCLA_DCYT_CONTROLADOR_H

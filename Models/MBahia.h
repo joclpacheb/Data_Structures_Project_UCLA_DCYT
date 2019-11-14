@@ -16,14 +16,14 @@ private:
 public:
     MBahia();
     //Right
-    void RInsertVehicle(MVehiculo mmul);
-    void RRemoveVehicle(MVehiculo &mmul);
+    void RInsertVehicle(MVehiculo mveh);
+    void RRemoveVehicle(MVehiculo &mveh);
     bool REmpty();
     bool RFull();
 
     //Left
-    void LInsertVehicle(MVehiculo mmul);
-    void LRemoveVehicle(MVehiculo &mmul);
+    void LInsertVehicle(MVehiculo mveh);
+    void LRemoveVehicle(MVehiculo &mveh);
     bool LEmpty();
     bool LFull();
 
