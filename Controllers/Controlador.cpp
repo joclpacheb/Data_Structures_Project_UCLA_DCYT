@@ -35,7 +35,7 @@ ibt Controlador::ConsultarBahia() {
     vest.ImprimirMensaje("\n LISTA DE BAHIAS: \n");
     int i=mbah.GetNumeroB();
     for (int i=0;i<=mest.ContarBahia();i++){
-        vest.ImprimirMensaje("\n BAHIA " + "i" +"\n");
+        vest.ImprimirMensaje("\n BAHIA " + i +"\n");
 
     }
 
