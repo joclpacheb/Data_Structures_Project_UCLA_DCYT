@@ -26,6 +26,7 @@ public:
     void OpcionSalir();
     void IncluirBahia();
     void CargarBahias();
+    void ConsultarBahia();
     void AddCarToQueue();
 };
 

@@ -17,6 +17,13 @@ void MEstacion::InicializarBahia(MBahia mbah) {
         ListBahia.ObtProx(aplist);
     }
 }
+
+int MEstacion::ContarBahia(){
+
+    return ListBahia.Contar();
+}
+
+
 MBahia MEstacion::GetBahia(int i) {
     aplist = ListBahia.ObtPrimero();
     while(aplist != nullptr) {  //preguntas si no esta apuntando a null o sea que si hay nodos

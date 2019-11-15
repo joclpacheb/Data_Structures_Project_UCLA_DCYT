@@ -19,6 +19,8 @@ public:
     void SetBahia(int i,MBahia mbah);
     bool Empty();
     bool Full();
+    int ContarBahia();
+
 };
 
 #endif //DATA_STRUCTURES_PROJECT_UCLA_DCYT_MESTACION_H

@@ -20,7 +20,28 @@ void Controlador::CargarBahias() {
         vest.ImprimirMensaje("\n ¡LAS BAHIAS YA FUERON CARGADAS!\n");
     }
 }
+void Controlador::IncluirBahia() {
+    vest.Limpiar();
 
+            int i=mbah.GetNumeroB();
+            i++;
+            mbah.SetNumeroB(i);
+            mest.InicializarBahia(mbah);
+
+        vest.ImprimirMensaje("\n ¡BAHIA N°"+ i +"CARGADA EXITOSAMENTE! \n");
+  }
+ibt Controlador::ConsultarBahia() {
+    vest.Limpiar();
+    vest.ImprimirMensaje("\n LISTA DE BAHIAS: \n");
+    int i=mbah.GetNumeroB();
+    for (int i=0;i<=mest.ContarBahia();i++){
+        vest.ImprimirMensaje("\n BAHIA " + "i" +"\n");
+
+    }
+
+
+
+}
 //============================================================
 //                  MENU METHODS                            ||
 //============================================================
@@ -68,22 +89,26 @@ void Controlador::OpcionBahia(){
         vg.ImprimirLineasBlanco(2);
         vg.Limpiar();
         vg.ImprimirEncabezado("\n      M E N U  B A H I A\n","      =======  ===============");
-        vg.ImprimirMensaje("   1. Cargar Bahías\n"); //this shit is here for the moment, I'll delete it later.
-        //vg.ImprimirMensaje("   . Incluir Bahía \n");
-        vg.ImprimirMensaje("   2. Modificar Bahía\n");
-        vg.ImprimirMensaje("   3. Consultar Bahía\n");
-        vg.ImprimirMensaje("   4. Eliminar Bahía\n");
-        vg.ImprimirMensaje("   5. Volver al menú anterior\n");
+        vg.ImprimirMensaje("   1. Cargar Bahías\n"); //carga dos bahias,para el inicio
+        vg.ImprimirMensaje("   2. Incluir Bahía\n"); //para incluir una bahia a la vez
+        vg.ImprimirMensaje("   3. Modificar Bahía\n");
+        vg.ImprimirMensaje("   4. Consultar Bahía\n");
+        vg.ImprimirMensaje("   5. Eliminar Bahía\n");
+        vg.ImprimirMensaje("   6. Volver al menú anterior\n");
         opc = vg.LeerValidarNro("   Seleccione su opción (1-5): ",1,3);
         switch (opc)
         {
             case 1: CargarBahias();
                 break;
-            case 2: //ModificarBahia();
+            case 2: IncluirBahia();
                 break;
-            case 3: //ConsultarBahia();
+            case 3: ModificarBahia();
                 break;
-            case 4: //EliminarBahia();
+            case 4: ConsultarBahia();
+                break;
+            case 5: EliminarBahia();
+                break;
+            case 6: Menu();
                 break;
         }
     }
@@ -106,7 +131,7 @@ void Controlador::OpcionVehiculo(){
         opc = vg.LeerValidarNro("   Seleccione su opción (1-4): ",1,3);
         switch (opc)
         {
-            case 1: //IncluirVehiculo();
+            case 1: IncluirVehiculo();
                 break;
             case 2: //ConsultarVehiculo();
                 break;
