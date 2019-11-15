@@ -12,9 +12,9 @@
 
 class Controlador {
 private:
-    MBahia mbah;
-    MEstacion mest;
-    MVehiculo mveh;
+    MEstacion mest; //lista
+    //MBahia mbah; //cola
+    MVehiculo mveh; //pila
 
     VEstacion vest;
 public:
@@ -27,6 +27,7 @@ public:
     void CargarBahias();
     void ConsultarBahia();
     void AddCarToQueue();
+    void IncluirBahia();
     void ProcessVehicleInQueue();
 };
 

@@ -11,37 +11,110 @@ Controlador::Controlador() {}
 void Controlador::CargarBahias() {
     vest.Limpiar();
     if (mest.Empty()){
+        MBahia mbah;
         for (int i = 1; i <= 2; ++i) { //porque son 2 bahías
             mbah.SetNumeroB(i);
             mest.InicializarBahia(mbah);
         }
-        vest.ImprimirMensaje("\n ¡BAHIAS CARGADAS EXITOSAMENTE! \n");
+        vest.ImprimirMensaje("\n ¡Bahías cargadas exitosamente! \n");
+        vest.ImprimirNro("\n N# de Bahías \n",mbah.GetNumeroB());
     }else{
-        vest.ImprimirMensaje("\n ¡LAS BAHIAS YA FUERON CARGADAS!\n");
+        vest.ImprimirMensaje("\n ¡Las bahías ya fueron cargadas!\n");
     }
 }
+
 void Controlador::IncluirBahia() {
     vest.Limpiar();
-
+MBahia mbah;
             int i=mbah.GetNumeroB();
             i++;
             mbah.SetNumeroB(i);
             mest.InicializarBahia(mbah);
 
-        vest.ImprimirMensaje("\n ¡BAHIA N°"+ i +"CARGADA EXITOSAMENTE! \n");
+   // vest.ImprimirMensaje("\n ¡BAHIA N°"+ i +"CARGADA EXITOSAMENTE! \n");
   }
-ibt Controlador::ConsultarBahia() {
+void Controlador::ConsultarBahia() {
     vest.Limpiar();
+    MBahia mbah;
     vest.ImprimirMensaje("\n LISTA DE BAHIAS: \n");
-    int i=mbah.GetNumeroB();
-    for (int i=0;i<=mest.ContarBahia();i++){
-        vest.ImprimirMensaje("\n BAHIA " + i +"\n");
+    int i = mbah.GetNumeroB();
+    for (int i = 0; i <= mest.ContarBahia(); i++) {
+       // vest.ImprimirMensaje("\n BAHIA " + "i" +"\n");
+        //vest.ImprimirMensaje("\n BAHIA " + i +"\n");
+
 
     }
-
-
-
 }
+
+//============================================================
+//                  VEHICLE METHODS                         ||
+//============================================================
+    void Controlador::AddCarToQueue() { //añadir vehículo a cola
+        if (!mest.Empty()) {
+            MBahia mbahaux;
+            int numbahia, numcola,numveh, test;
+            numveh = vest.LeerNro("\n  ¿Cuántos vehículos entrarán en la cola? : ");
+            for (int i = 1; i <= numveh; ++i) {
+                vest.ImprimirNro("\n  Vehículo N# : ",i);
+                //numbahia = vest.LeerValidarNro("\n  ¿A cuál bahía quieres pasar? (1-2) : ",1,2);
+                //cout << "¿A cuál bahía quieres pasar? (1-2)" << endl;
+                //cin >> numbahia;
+                mbahaux = mest.GetBahia(numbahia);
+                numcola = vest.LeerValidarNro("\n  ¿Cola 1.Derecha o 2.Izquierda? (1-2) : ",1,2);
+                if(numcola == 1){
+                    mbahaux.RInsertVehicle(mveh);
+                    mest.SetBahia(numcola,mbahaux);
+                }else{
+                    mbahaux.LInsertVehicle(mveh);
+                    mest.SetBahia(numcola,mbahaux);
+                }
+            }
+            vest.ImprimirMensaje("\n ¡Vehículo(s) añadido(s) en cola exitosamente! \n");
+            test = vest.LeerValidarNro("\n ¿Deseas añadir más vehículos a la cola? 1.Si 2.No \n",1,2);
+            if(test == 1){
+                AddCarToQueue();
+            }
+        }else{
+            vest.ImprimirMensaje("\n ¡Error! Bahías fuera de servicio. \n");
+        }
+    }
+    void Controlador::ProcessVehicleInQueue() { //procesar vehiculo en cola.
+        if (!mest.Empty()) {
+            MBahia mbahaux;
+            long numbah, numcola;
+            numbah = vest.LeerValidarNro("\n  ¿Cuál bahía quieres procesar? (1-2) : ",1,2);
+            numcola = vest.LeerValidarNro("\n  ¿Cola 1.Derecha o 2.Izquierda? (1-2) : ",1,2);
+            if(numcola == 1){
+                do{
+                    //Cola por la derecha
+                    mbahaux = mest.GetBahia(numbah);
+                    if (mbahaux.RProcessVehicles()){ // I need to implement that method in Mbahia
+                        mest.SetBahia(numbah,mbahaux);
+                        mbahaux.RRemoveVehicle(mveh);
+                        vest.ImprimirMensaje("\n Vehículos procesados con exito! \n");
+                    }else{
+                        vest.ImprimirMensaje("\n No hay más vehículos que procesar! \n");
+                    }
+                    numbah = vest.LeerValidarNro("\n  Qué bahía quieres procesar? (1,2) 3 para salir : ",1,2);
+                }while(numbah != 3);
+            }else{
+                //cola por la izquierda
+                do{
+                    mbahaux = mest.GetBahia(numbah);
+                    if (mbahaux.LProcessVehicles()){ // I need to implement that method in Mbahia
+                        mest.SetBahia(numbah,mbahaux);
+                        mbahaux.LRemoveVehicle(mveh);
+                        vest.ImprimirMensaje("\n Vehículos procesados con exito! \n");
+                    }else{
+                        vest.ImprimirMensaje("\n No hay más vehículos que procesar! \n");
+                    }
+                    numbah = vest.LeerValidarNro("\n  Qué bahía quieres procesar? (1,2) 3 para salir : ",1,2);
+                }while(numbah != 3);
+            }
+        }else{
+            vest.ImprimirMensaje("\n ¡Error! Bahías fuera de servicio. \n");
+        }
+    }
 //============================================================
 //                  MENU METHODS                            ||
 //============================================================
@@ -95,24 +168,24 @@ void Controlador::OpcionBahia(){
         vg.ImprimirMensaje("   4. Consultar Bahía\n");
         vg.ImprimirMensaje("   5. Eliminar Bahía\n");
         vg.ImprimirMensaje("   6. Volver al menú anterior\n");
-        opc = vg.LeerValidarNro("   Seleccione su opción (1-5): ",1,3);
+        opc = vg.LeerValidarNro("   Seleccione su opción (1-6): ",1,6);
         switch (opc)
         {
             case 1: CargarBahias();
                 break;
-            case 2: IncluirBahia();
+            case 2: //IncluirBahia();
                 break;
-            case 3: ModificarBahia();
+            case 3: //ModificarBahia();
                 break;
             case 4: ConsultarBahia();
                 break;
-            case 5: EliminarBahia();
+            case 5: //EliminarBahia();
                 break;
             case 6: Menu();
                 break;
         }
     }
-    while(opc != 5);
+    while(opc != 6);
 }
 void Controlador::OpcionVehiculo(){
     int opc;
@@ -127,19 +200,22 @@ void Controlador::OpcionVehiculo(){
         vg.ImprimirMensaje("   1. Incluir Vehículo\n");
         vg.ImprimirMensaje("   2. Consultar Vehículo\n");
         vg.ImprimirMensaje("   3. Eliminar Vehículo\n");
-        vg.ImprimirMensaje("   4. Volver al menú anterior\n");
-        opc = vg.LeerValidarNro("   Seleccione su opción (1-4): ",1,3);
+        vg.ImprimirMensaje("   4. Procesar Vehículo\n");
+        vg.ImprimirMensaje("   5. Volver al menú anterior\n");
+        opc = vg.LeerValidarNro("   Seleccione su opción (1-5): ",1,5);
         switch (opc)
         {
-            case 1: IncluirVehiculo();
+            case 1: AddCarToQueue(); //IncluirVehiculo();
                 break;
             case 2: //ConsultarVehiculo();
                 break;
             case 3: //EliminarVehiculo();
                 break;
+            case 4: //ProcessVehicleInQueue();
+                break;
         }
     }
-    while(opc != 4);
+    while(opc != 5);
 }
 void Controlador::OpcionAyuda(){
     vest.ImprimirMensaje("  La opción 1 cargará (de manera predeterminada carga dos bahías), incluirá, consultará, modificará, y eliminará las bahías en la estación.\n");

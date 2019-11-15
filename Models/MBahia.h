@@ -15,17 +15,20 @@ private:
     int numerob; // numero de la bahia
 public:
     MBahia();
+
     //Right
     void RInsertVehicle(MVehiculo mveh);
     void RRemoveVehicle(MVehiculo &mveh);
     bool REmpty();
     bool RFull();
+    bool RProcessVehicles();
 
     //Left
     void LInsertVehicle(MVehiculo mveh);
     void LRemoveVehicle(MVehiculo &mveh);
     bool LEmpty();
     bool LFull();
+    bool LProcessVehicles();
 
     int GetNumeroB() const;
     void SetNumeroB(int numerob);

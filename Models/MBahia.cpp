@@ -40,3 +40,19 @@ int MBahia::GetNumeroB() const {
 void MBahia::SetNumeroB(int numerob) {
     this->numerob = numerob;
 }
+bool MBahia::RProcessVehicles() {
+    MVehiculo aux;
+    if(!RightQueue.Vacia()){
+        RightQueue.Remover(aux);
+        return true;
+    }else
+        return false;
+}
+bool MBahia::LProcessVehicles() {
+    MVehiculo aux;
+    if(!LeftQueue.Vacia()){
+        LeftQueue.Remover(aux);
+        return true;
+    }else
+        return false;
+}
