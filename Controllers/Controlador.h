@@ -24,10 +24,10 @@ public:
     void OpcionVehiculo();
     void OpcionAyuda();
     void OpcionSalir();
-    void IncluirBahia();
     void CargarBahias();
     void ConsultarBahia();
     void AddCarToQueue();
+    void ProcessVehicleInQueue();
 };
 
 #endif //DATA_STRUCTURES_PROJECT_UCLA_DCYT_CONTROLADOR_H
