@@ -14,16 +14,12 @@ void MEstacion::InicializarBahia(MBahia mbah) {
     } else {
         ListBahia.InsDespues(aplist, mbah);
         //aplist = aplist->ObtDer();
-        ListBahia.ObtProx(aplist);
+        aplist = ListBahia.ObtProx(aplist);
     }
 }
-
 int MEstacion::ContarBahia(){
-
     return ListBahia.Contar();
 }
-
-
 MBahia MEstacion::GetBahia(int i) {
     aplist = ListBahia.ObtPrimero();
     while(aplist != nullptr) {  //preguntas si no esta apuntando a null o sea que si hay nodos
@@ -33,7 +29,7 @@ MBahia MEstacion::GetBahia(int i) {
             return ListBahia.ObtInfo(aplist);
         }
         // aplist=aplist->ObtDer();
-        ListBahia.ObtProx(aplist);
+        aplist = ListBahia.ObtProx(aplist);
     }
 }
 void MEstacion::SetBahia(int i, MBahia mbah) {
@@ -41,7 +37,7 @@ void MEstacion::SetBahia(int i, MBahia mbah) {
     if(aplist != nullptr) {
         while (ListBahia.ObtInfo(aplist).GetNumeroB() != i) {  //preguntas si no esta apuntando a null o sea que si hay nodos
             //aplist = aplist->ObtDer();
-            ListBahia.ObtProx(aplist);
+            aplist = ListBahia.ObtProx(aplist);
         }
     }
    // aplist->AsigInfo(mbah);

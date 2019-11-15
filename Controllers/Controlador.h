@@ -13,21 +13,28 @@
 class Controlador {
 private:
     MEstacion mest; //lista
-    //MBahia mbah; //cola
+    MBahia mbah; //cola
     MVehiculo mveh; //pila
 
     VEstacion vest;
+    bool check;
 public:
     Controlador();
+
+    //Menu Methods
     void Menu();
     void OpcionBahia();
     void OpcionVehiculo();
     void OpcionAyuda();
     void OpcionSalir();
+
+    //Bahia Methods
     void CargarBahias();
-    void ConsultarBahia();
-    void AddCarToQueue();
     void IncluirBahia();
+    void ConsultarBahia();
+
+    //Vehicle Methods
+    void AddCarToQueue();
     void ProcessVehicleInQueue();
 };
 
