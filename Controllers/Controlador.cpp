@@ -24,6 +24,7 @@ void Controlador::CargarBahias() {
     } else {
         vest.ImprimirMensaje("\n ¡Las bahías ya fueron cargadas!\n");
     }
+vest.Pausa();
 }
 
 void Controlador::IncluirBahia() {
@@ -31,10 +32,11 @@ void Controlador::IncluirBahia() {
     if (mest.Empty()) {
         vest.ImprimirMensaje("\n ¡Advertencia! No hay bahías precargadas.\n");
         vest.Pausa();
+    }
         vest.ImprimirMensaje("\n Usted puede cargar dos bahías de manera predeterminada \n"
                              " o cargar la cantidad deseada.\n");
         vest.Pausa();
-        int a = vest.LeerValidarNro("\n 1.Cargar dos bahías. \n"
+        int a = vest.LeerValidarNro("\n1.Cargar dos bahías. \n"
                                     "2.Cargar cantidad deseada. \n", 1, 2);
         int b = 0;
         if (a == 1) {
@@ -56,16 +58,20 @@ void Controlador::IncluirBahia() {
             }
         }
     }
-}
 
 void Controlador::ConsultarBahia() {
     vest.Limpiar();
     MBahia mbah;
+    if (mest.Empty()) {
+        vest.ImprimirMensaje("\n ¡Advertencia! No hay bahías disponibles.\n");
+        vest.Pausa();
+    }
     vest.ImprimirMensaje("\n LISTA DE BAHIAS: \n");
-    int i = mbah.GetNumeroB();
-    for (int i = 0; i <= mest.ContarBahia(); i++) {
-        //vest.ImprimirMensaje("\n BAHIA " + "i" +"\n");
-        // vest.ImprimirMensaje("\n BAHIA " + i +"\n");
+    for (int j = 0; j <= mest.ContarBahia(); j++) {
+        int i = mbah.GetNumeroB();
+        vest.ImprimirMensaje("\n BAHIA ");
+        vest.ImprimirMensaje(to_string(i));
+        vest.ImprimirMensaje(". \n");
     }
 }
 
@@ -78,16 +84,23 @@ void Controlador::AddCarToQueue() { //añadir vehículo a cola
     if (!mest.Empty()) {
         MBahia mbahaux;
         int numbahia, numcola, numveh, test;
+        float hora; //la hora estara en formato militar
+        //preguntar hora de entrada y settear
+
         numveh = vest.LeerNro("\n  ¿Cuántos vehículos entrarán en la cola? : ");
         for (int i = 1; i <= numveh; ++i) {
             vest.ImprimirNro("\n  Vehículo N# : ", i);
             numbahia = vest.LeerValidarNro("\n  ¿A cuál bahía quieres pasar? (1-2) : ", 1, 2);
             mbahaux = mest.GetBahia(numbahia);
             numcola = vest.LeerValidarNro("\n  ¿Cola 1.Derecha o 2.Izquierda? (1-2) : ", 1, 2);
+            hora = vest.LeerValidarNroDecimal("\n Hora de llegada: si es 4:30pm ingrese 16.5 formato militar ", 1, 2);
+//la hora se podria ingresar en otro formato? lo deje decimal..
             if (numcola == 1) {
+                mveh.InsertTime(hora);
                 mbahaux.RInsertVehicle(mveh);
                 mest.SetBahia(numcola, mbahaux);
             } else {
+                mveh.InsertTime(hora);
                 mbahaux.LInsertVehicle(mveh);
                 mest.SetBahia(numcola, mbahaux);
             }

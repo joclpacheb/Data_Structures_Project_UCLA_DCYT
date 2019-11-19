@@ -6,11 +6,11 @@ Pila <int> MVehiculo::GetPilaHoras() const{
 return PilaHoras;
 }
 
-void MVehiculo::InsertTime(int n){
+void MVehiculo::InsertTime(float n){
     PilaHoras.Insertar(n);
 }
 
-void MVehiculo::RemoveTime(int &n){
+void MVehiculo::RemoveTime(float &n){
     PilaHoras.Remover(n);
 }
 bool MVehiculo::Empty(){
