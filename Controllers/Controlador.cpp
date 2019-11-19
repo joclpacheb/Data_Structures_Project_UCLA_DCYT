@@ -16,15 +16,15 @@ void Controlador::CargarBahias() {
     if (mest.Empty()) {
         //  MBahia mbah;
         for (int i = 1; i <= 2; ++i) { //porque son 2 bahías
-            mbah.SetNumeroB(i);
+            //mbah.SetNumeroB(i);
             mest.InicializarBahia(mbah);
         }
         vest.ImprimirMensaje("\n ¡Bahías cargadas exitosamente! \n");
-        vest.ImprimirNro("\n N# de Bahías \n", mbah.GetNumeroB());
+        vest.ImprimirNro("\n N# de bahías cargadas: ", mest.ContarBahia());
     } else {
         vest.ImprimirMensaje("\n ¡Las bahías ya fueron cargadas!\n");
     }
-vest.Pausa();
+    vest.Pausa();
 }
 
 void Controlador::IncluirBahia() {
@@ -61,18 +61,20 @@ void Controlador::IncluirBahia() {
 
 void Controlador::ConsultarBahia() {
     vest.Limpiar();
-    MBahia mbah;
     if (mest.Empty()) {
         vest.ImprimirMensaje("\n ¡Advertencia! No hay bahías disponibles.\n");
         vest.Pausa();
     }
     vest.ImprimirMensaje("\n LISTA DE BAHIAS: \n");
-    for (int j = 0; j <= mest.ContarBahia(); j++) {
-        int i = mbah.GetNumeroB();
+    //This is one way to do it. If there's still time I'll do a fancier version.
+    for (int j = 1; j <= mest.ContarBahia(); j++) {
+        mbah.SetNumeroB(j);
         vest.ImprimirMensaje("\n BAHIA ");
-        vest.ImprimirMensaje(to_string(i));
+        vest.ImprimirMensaje(to_string(mbah.GetNumeroB()));
         vest.ImprimirMensaje(". \n");
     }
+    vest.ImprimirNro("\n Número total de bahías: \n ", mest.ContarBahia());
+
 }
 
 //============================================================
@@ -201,7 +203,7 @@ void Controlador::OpcionBahia() {
         vg.ImprimirLineasBlanco(2);
         vg.Limpiar();
         vg.ImprimirEncabezado("\n      M E N U  B A H I A\n", "      =======  ===============");
-        vg.ImprimirMensaje("   1. Cargar Bahías\n"); //carga dos bahias,para el inicio
+        vg.ImprimirMensaje("   1. Cargar Bahías\n"); //carga dos bahias, para el inicio
         vg.ImprimirMensaje("   2. Incluir Bahía\n"); //para incluir una bahia a la vez
         vg.ImprimirMensaje("   3. Modificar Bahía\n");
         vg.ImprimirMensaje("   4. Consultar Bahía\n");

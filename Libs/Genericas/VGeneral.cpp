@@ -17,7 +17,7 @@ VGeneral::VGeneral(){}
 // Permite hacer una pausa
 void VGeneral::Pausa()
 {
-    cout << "Apachurrale enter para continuar" << endl;
+    cout << "\n Apachurrale enter para continuar" << endl;
     getchar();
     //cin.ignore().get();
 }

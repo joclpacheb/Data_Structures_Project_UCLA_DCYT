@@ -2,7 +2,7 @@
 
 MVehiculo::MVehiculo(){}
 
-Pila <int> MVehiculo::GetPilaHoras() const{
+Pila <float> MVehiculo::GetPilaHoras() const{
 return PilaHoras;
 }
 

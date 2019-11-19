@@ -12,11 +12,11 @@ private:
     //en función de ello tiene un espacio que ocupa en la bahía en la que se encuentre...
     float tanque;
 
-    Pila <int> PilaHoras;
+    Pila <float> PilaHoras;
 
 public:
     MVehiculo();
-    Pila <int> GetPilaHoras() const;
+    Pila <float> GetPilaHoras() const;
     MVehiculo(int tipo);
     //~MVehiculo();
     void InsertTime(float n);
