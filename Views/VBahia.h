@@ -10,6 +10,7 @@ class VBahia: public VGeneral {
 public:
     VBahia();
 
+    void ImprimirBahia(string vehiculo, string placa, int cantlitro, float bs, float time);
 };
 
 

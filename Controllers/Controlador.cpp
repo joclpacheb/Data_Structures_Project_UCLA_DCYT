@@ -35,6 +35,8 @@ void Controlador::CargarBahias() {
             //mbah.SetNumeroB(i);
             mest.InicializarBahia(mbah);
         }
+        //float p =vest.LeerNroDecimal("\n Introduzca precio nuevo: ");
+        //mbah.SetPrice(p);
         this->check = true;
         vest.ImprimirMensaje("\n ¡Bahías cargadas exitosamente! \n");
         vest.ImprimirNro("\n N# de bahías cargadas: ", mest.ContarBahia());
@@ -109,6 +111,7 @@ void Controlador::ModificarBahia(){
     }if(a == 2){
         ConsultarBahia();
        int i = vest.LeerNro("\n Introduzca el número de la bahía que desea modificar el status: ");
+       //Search doesn't work yet.
        if(mest.SearchByNumber(mbah,i)){
            int b = vest.LeerValidarNro("\n ¿Está seguro que quiere cambiar el status? 1.Si 2.No ", 1, 2);
            if(b == 1){
@@ -143,7 +146,7 @@ void Controlador::AddCarToQueue() { //añadir vehículo a cola
             numbahia = vest.LeerValidarNro("\n  ¿A cuál bahía quieres pasar? (1-2) : ", 1, 2);
             mbahaux = mest.GetBahia(numbahia);
             numcola = vest.LeerValidarNro("\n  ¿Cola 1.Derecha o 2.Izquierda? (1-2) : ", 1, 2);
-            hora = vest.LeerValidarNroDecimal("\n Hora de llegada: si es 4:30pm ingrese 16.5 formato militar ", 1, 2);
+            hora = vest.LeerNroDecimal("\n Hora de llegada: si es 4:30pm ingrese 16.5 formato militar ");
 //la hora se podria ingresar en otro formato? lo deje decimal..
             if (numcola == 1) {
                 mveh.InsertTime(hora);
@@ -170,8 +173,10 @@ void Controlador::ProcessVehicleInQueue() { //procesar vehiculo en cola.
     if (!mest.Empty()) {
         MBahia mbahaux;
         long numbah, numcola;
+        float hora;
         numbah = vest.LeerValidarNro("\n  ¿Cuál bahía quieres procesar? (1-2) : ", 1, 2);
         numcola = vest.LeerValidarNro("\n  ¿Cola 1.Derecha o 2.Izquierda? (1-2) : ", 1, 2);
+        hora = vest.LeerNroDecimal("\n  Hora de salida: ");
         if (numcola == 1) {
             do {
                 //Cola por la derecha
@@ -179,7 +184,8 @@ void Controlador::ProcessVehicleInQueue() { //procesar vehiculo en cola.
                 if (mbahaux.RProcessVehicles()) { // I need to implement that method in Mbahia
                     mest.SetBahia(numbah, mbahaux);
                     mbahaux.RRemoveVehicle(mveh);
-                    vest.ImprimirMensaje("\n Vehículos procesados con exito! \n");
+                    mveh.InsertTime(hora);
+                    vest.ImprimirMensaje("\n Vehículo(s) procesado(s) con exito! \n");
                 } else {
                     vest.ImprimirMensaje("\n No hay más vehículos que procesar! \n");
                 }
@@ -192,7 +198,7 @@ void Controlador::ProcessVehicleInQueue() { //procesar vehiculo en cola.
                 if (mbahaux.LProcessVehicles()) { // I need to implement that method in Mbahia
                     mest.SetBahia(numbah, mbahaux);
                     mbahaux.LRemoveVehicle(mveh);
-                    vest.ImprimirMensaje("\n Vehículos procesados con exito! \n");
+                    vest.ImprimirMensaje("\n Vehículo(s) procesado(s) con exito! \n");
                 } else {
                     vest.ImprimirMensaje("\n No hay más vehículos que procesar! \n");
                 }
