@@ -13,6 +13,8 @@ private:
     Cola<MVehiculo> RightQueue;
     Cola<MVehiculo> LeftQueue;
     int numerob; // numero de la bahia
+    float price;
+    bool status;
 public:
     MBahia();
 
@@ -32,6 +34,13 @@ public:
 
     int GetNumeroB() const;
     void SetNumeroB(int numerob);
+
+    float GetPrice() const;
+    void SetPrice(float price);
+
+    bool GetStatus() const;
+    void SetStatus(bool status);
+
 };
 
 #endif //DATA_STRUCTURES_PROJECT_UCLA_DCYT_MBAHIA_H

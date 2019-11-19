@@ -49,3 +49,20 @@ bool MEstacion::Empty(){
 bool MEstacion::Full(){
     return ListBahia.Llena();
 }
+/*bool MEstacion::Search(MBahia &mbah){
+    ListBahia.Buscar(mbah);
+}*/
+bool MEstacion::SearchByNumber(MBahia &mbah, int n) {
+    nodo<MBahia> *auxappbah = ListBahia.ObtPrimero(); // cambiando buscar por auxiliar
+    while(auxappbah != nullptr) {  //preguntas si no esta apuntando a null, o sea, que si hay nodos
+        //auxappbah->ObtInfo().GetNumeroB() == num
+        if (ListBahia.ObtInfo(auxappbah).GetNumeroB() == n){
+            //mpro = auxappbah->ObtInfo();
+            ListBahia.ObtInfo(auxappbah);
+            return true;
+        }
+        auxappbah = ListBahia.ObtProx(auxappbah);
+        // auxapprod=auxapprod->ObtDer();
+    }
+    return false;
+}

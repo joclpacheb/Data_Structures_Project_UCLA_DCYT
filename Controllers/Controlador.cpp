@@ -16,7 +16,7 @@ void Controlador::CargarDosBahias() {
     vest.Limpiar();
     if (mest.Empty()) {
             for (int i = 1; i <= 2; ++i) { //porque son 2 bahías
-                //mbah.SetNumeroB(i);
+                mbah.SetNumeroB(i);
                 mest.InicializarBahia(mbah);
             }
         vest.ImprimirMensaje("\n ¡Bahías cargadas exitosamente! \n");
@@ -83,7 +83,7 @@ void Controlador::ConsultarBahia() {
         vest.ImprimirMensaje("\n ¡Advertencia! No hay bahías disponibles.\n");
         vest.Pausa();
     }
-    vest.ImprimirMensaje("\n LISTA DE BAHIAS: \n");
+    vest.ImprimirMensaje("\n LISTA DE BAHIAS DISPONIBLES: \n");
     //This is one way to do it. If there's still time I'll do a fancier version.
     for (int j = 1; j <= mest.ContarBahia(); j++) {
         mbah.SetNumeroB(j);
@@ -96,6 +96,27 @@ void Controlador::ConsultarBahia() {
 
 //This method will (probably) modify number, status and price of gas pumps.
 void Controlador::ModificarBahia(){
+    vest.ImprimirMensaje("¿Qué desea modificar? \n");
+    int a = vest.LeerValidarNro("\n1.Precio de la gasolina. \n"
+                                "2.Status de la bahía. \n", 1, 2);
+    if(a == 1){
+        vest.ImprimirNroDecimal("\n Precio actual de la gasolina: ", mbah.GetPrice());
+        float p =vest.LeerNroDecimal("\n Introduzca precio nuevo: ");
+        mbah.SetPrice(p);
+        vest.Pausa();
+        vest.ImprimirMensaje("¡Precio actualizado satisfactoriamente! \n");
+        vest.ImprimirNroDecimal("\n El precio nuevo ahora es: ", mbah.GetPrice());
+    }if(a == 2){
+        ConsultarBahia();
+       int i = vest.LeerNro("\n Introduzca el número de la bahía que desea modificar el status: ");
+       if(mest.SearchByNumber(mbah,i)){
+           int b = vest.LeerValidarNro("\n ¿Está seguro que quiere cambiar el status? 1.Si 2.No ", 1, 2);
+           if(b == 1){
+               mbah.SetStatus(false);
+           }
+           vest.ImprimirMensaje("El status de la bahía fue cambiada satisfactoriamente \n");
+       }
+    }
 
 }
 

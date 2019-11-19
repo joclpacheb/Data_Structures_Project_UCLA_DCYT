@@ -40,6 +40,21 @@ int MBahia::GetNumeroB() const {
 void MBahia::SetNumeroB(int numerob) {
     this->numerob = numerob;
 }
+
+float MBahia::GetPrice() const {
+    return price;
+}
+void MBahia::SetPrice(float price) {
+    this->price = price;
+}
+
+bool MBahia::GetStatus() const {
+    return status;
+}
+void MBahia::SetStatus(bool status) {
+    this->status = status;
+}
+
 bool MBahia::RProcessVehicles() {
     MVehiculo aux;
     if(!RightQueue.Vacia()){
@@ -56,3 +71,4 @@ bool MBahia::LProcessVehicles() {
     }else
         return false;
 }
+
