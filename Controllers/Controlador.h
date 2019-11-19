@@ -33,10 +33,14 @@ public:
     void CargarBahias();
     void IncluirBahia();
     void ConsultarBahia();
+    void ModificarBahia();
+    void EliminarBahia();
 
     //Vehicle Methods
     void AddCarToQueue();
+    void ConsultarVehiculo();
     void ProcessVehicleInQueue();
+    void EliminarVehiculo();
 };
 
 #endif //DATA_STRUCTURES_PROJECT_UCLA_DCYT_CONTROLADOR_H

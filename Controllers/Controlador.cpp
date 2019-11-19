@@ -11,7 +11,7 @@ Controlador::Controlador() {
 //                  GAS PUMPS METHODS                       ||
 //============================================================
 
-//This method works only to pre-load two gas pumps for default.
+//This method works only to pre-load two gas pumps for default. It can be used only once.
 void Controlador::CargarDosBahias() {
     vest.Limpiar();
     if (mest.Empty()) {
@@ -27,6 +27,7 @@ void Controlador::CargarDosBahias() {
     vest.Pausa();
 }
 
+//This methods loads only 2 gas pumps. It can be used more than once.
 void Controlador::CargarBahias() {
     vest.Limpiar();
     if (mest.Empty() || !this->check) {
@@ -40,39 +41,42 @@ void Controlador::CargarBahias() {
     }
     vest.Pausa();
 }
+
+//This method asks whether you want to include two gas pumps by default or choose the quantity you want.
 void Controlador::IncluirBahia() {
     vest.Limpiar();
     if (mest.Empty()) {
         vest.ImprimirMensaje("\n ¡Advertencia! No hay bahías precargadas.\n");
         vest.Pausa();
     }
-        vest.ImprimirMensaje("\n Usted puede cargar dos bahías de manera predeterminada \n"
-                             " o cargar la cantidad deseada.\n");
-        vest.Pausa();
-        int a = vest.LeerValidarNro("\n1.Cargar dos bahías. \n"
-                                    "2.Cargar cantidad deseada. \n", 1, 2);
-        int b = 0;
-        if (a == 1) {
-            this->check = false;
-            CargarBahias();
-            b = vest.LeerValidarNro("\n ¿Agregar más bahías? 1.Si 2.No \n", 1, 2);
-        }  if (a == 2 || b == 1){
-            if (!mest.Full()) {
-                int numbah = vest.LeerNro("\n  ¿Cuántas bahías desea incluir? : ");
-                for (int i = 1; i <= numbah; ++i) {
-                    // int i = mbah.GetNumeroB();
-                    //i++;
-                    // mbah.SetNumeroB(i);
-                    mest.InicializarBahia(mbah);
-                    // vest.ImprimirMensaje("\n ¡BAHIA N°"+ i +"CARGADA EXITOSAMENTE! \n");
-                }
-                vest.ImprimirNro("\n Bahía N°\n", mest.ContarBahia());
-                vest.ImprimirMensaje("\n ¡Bahía(s) cargada(s) exitosamente! \n");
-                //vest.ImprimirNro("\n N# de Bahías \n", mbah.GetNumeroB());
+    vest.ImprimirMensaje("\n Usted puede cargar dos bahías de manera predeterminada \n"
+                         " o cargar la cantidad deseada.\n");
+    vest.Pausa();
+    int a = vest.LeerValidarNro("\n1.Cargar dos bahías. \n"
+                                "2.Cargar cantidad deseada. \n", 1, 2);
+    int b = 0;
+    if (a == 1) {
+        this->check = false;
+        CargarBahias();
+        b = vest.LeerValidarNro("\n ¿Agregar más bahías? 1.Si 2.No \n", 1, 2);
+    }
+    if (a == 2 || b == 1) {
+        if (!mest.Full()) {
+            int numbah = vest.LeerNro("\n  ¿Cuántas bahías desea incluir? : ");
+            for (int i = 1; i <= numbah; ++i) {
+                // int i = mbah.GetNumeroB();
+                //i++;
+                // mbah.SetNumeroB(i);
+                mest.InicializarBahia(mbah);
+                // vest.ImprimirMensaje("\n ¡BAHIA N°"+ i +"CARGADA EXITOSAMENTE! \n");
             }
+            vest.ImprimirNro("\n Bahía N°\n", mest.ContarBahia());
+            vest.ImprimirMensaje("\n ¡Bahía(s) cargada(s) exitosamente! \n");
+            //vest.ImprimirNro("\n N# de Bahías \n", mbah.GetNumeroB());
         }
     }
-
+}
+//This method shows the gas pumps available.
 void Controlador::ConsultarBahia() {
     vest.Limpiar();
     if (mest.Empty()) {
@@ -88,6 +92,15 @@ void Controlador::ConsultarBahia() {
         vest.ImprimirMensaje(". \n");
     }
     vest.ImprimirNro("\n Número total de bahías: \n ", mest.ContarBahia());
+}
+
+//This method will (probably) modify number, status and price of gas pumps.
+void Controlador::ModificarBahia(){
+
+}
+
+//This method will delete gas pumps. It needs to validate if there are queues of vehicles before deleting.
+void Controlador::EliminarBahia(){
 
 }
 
@@ -169,6 +182,17 @@ void Controlador::ProcessVehicleInQueue() { //procesar vehiculo en cola.
         vest.ImprimirMensaje("\n ¡Error! Bahías fuera de servicio. \n");
     }
 }
+
+//This method shows how many vehicles are in each queue depending on selected gas pump.
+void Controlador::ConsultarVehiculo(){
+
+}
+
+//This method will delete vehicles that got tired of waiting a lot in the queue (?).
+void Controlador::EliminarVehiculo(){
+
+}
+
 //============================================================
 //                  MENU METHODS                            ||
 //============================================================
@@ -184,11 +208,11 @@ void Controlador::Menu() {
         vg.ImprimirEncabezado("\n      Proyecto Programación No Numérica 1\n", "      =======  ===============");
         vg.ImprimirEncabezado("\n      Estación de Servicios 'La Sin Colas'  \n", "      =======  ===============");
         vg.ImprimirEncabezado("\n      M E N U  O P C I O N E S\n", "      =======  ===============");
-        vg.ImprimirMensaje("   1. Bahía\n");
-        vg.ImprimirMensaje("   2. Vehículo\n");
-        vg.ImprimirMensaje("   3. Reportes\n");
-        vg.ImprimirMensaje("   4. Ayuda\n");
-        vg.ImprimirMensaje("   5. Salir\n");
+        vg.ImprimirMensaje("   1. Bahía.\n");
+        vg.ImprimirMensaje("   2. Vehículo.\n");
+        vg.ImprimirMensaje("   3. Reportes.\n");
+        vg.ImprimirMensaje("   4. Ayuda.\n");
+        vg.ImprimirMensaje("   5. Salir.\n");
         opc = vg.LeerValidarNro("   Seleccione su opción (1-5): ", 1, 5);
         switch (opc) {
             case 1:
@@ -217,12 +241,12 @@ void Controlador::OpcionBahia() {
         vg.ImprimirLineasBlanco(2);
         vg.Limpiar();
         vg.ImprimirEncabezado("\n      M E N U  B A H I A\n", "      =======  ===============");
-        vg.ImprimirMensaje("   1. Cargar Bahías. (Esta opción carga solo dos bahías de manera predeterminada).\n"); //carga dos bahias, para el inicio
-        vg.ImprimirMensaje("   2. Incluir Bahía\n"); //para incluir una bahia a la vez
-        vg.ImprimirMensaje("   3. Modificar Bahía\n");
-        vg.ImprimirMensaje("   4. Consultar Bahía\n");
-        vg.ImprimirMensaje("   5. Eliminar Bahía\n");
-        vg.ImprimirMensaje("   6. Volver al menú anterior\n");
+        vg.ImprimirMensaje("   1. Cargar Bahías. (Esta opción carga solo dos bahías).\n"); //carga dos bahias, para el inicio
+        vg.ImprimirMensaje("   2. Incluir Bahía.\n"); //para incluir una bahia a la vez
+        vg.ImprimirMensaje("   3. Consultar Bahía.\n");
+        vg.ImprimirMensaje("   4. Modificar Bahía.\n");
+        vg.ImprimirMensaje("   5. Eliminar Bahía.\n");
+        vg.ImprimirMensaje("   6. Volver al menú anterior.\n");
         opc = vg.LeerValidarNro("   Seleccione su opción (1-6): ", 1, 6);
         switch (opc) {
             case 1:
@@ -231,12 +255,12 @@ void Controlador::OpcionBahia() {
             case 2:
                 IncluirBahia();
                 break;
-            case 3: //ModificarBahia();
+            case 3: ConsultarBahia();
                 break;
             case 4:
-                ConsultarBahia();
+                  ModificarBahia();
                 break;
-            case 5: //EliminarBahia();
+            case 5: EliminarBahia();
                 break;
             case 6:
                 Menu();
@@ -254,21 +278,21 @@ void Controlador::OpcionVehiculo() {
         vg.ImprimirLineasBlanco(2);
         vg.Limpiar();
         vg.ImprimirEncabezado("\n      M E N U  V E H I C U L O\n", "      =======  ===============");
-        vg.ImprimirMensaje("   1. Incluir Vehículo\n");
-        vg.ImprimirMensaje("   2. Consultar Vehículo\n");
-        vg.ImprimirMensaje("   3. Eliminar Vehículo\n");
-        vg.ImprimirMensaje("   4. Procesar Vehículo\n");
-        vg.ImprimirMensaje("   5. Volver al menú anterior\n");
+        vg.ImprimirMensaje("   1. Incluir Vehículo.\n");
+        vg.ImprimirMensaje("   2. Consultar Vehículo.\n");
+        vg.ImprimirMensaje("   3. Procesar Vehículo.\n");
+        vg.ImprimirMensaje("   4. Eliminar Vehículo.\n");
+        vg.ImprimirMensaje("   5. Volver al menú anterior.\n");
         opc = vg.LeerValidarNro("   Seleccione su opción (1-5): ", 1, 5);
         switch (opc) {
             case 1:
-                AddCarToQueue(); //IncluirVehiculo();
+                AddCarToQueue();
                 break;
-            case 2: //ConsultarVehiculo();
+            case 2: ConsultarVehiculo();
                 break;
-            case 3: //EliminarVehiculo();
+            case 3: ProcessVehicleInQueue();
                 break;
-            case 4: //ProcessVehicleInQueue();
+            case 4: EliminarVehiculo();
                 break;
             case 5:
                 Menu();
@@ -279,7 +303,7 @@ void Controlador::OpcionVehiculo() {
 
 void Controlador::OpcionAyuda() {
     vest.ImprimirMensaje(
-            "  La opción 1 cargará (de manera predeterminada carga dos bahías), incluirá, consultará, modificará, y eliminará las bahías en la estación.\n");
+            "  La opción 1 cargará, incluirá, consultará, modificará, y eliminará las bahías en la estación.\n");
     vest.ImprimirMensaje("  La opción 2 incluirá, consultará, y eliminará los vehículos en cola.\n");
     vest.ImprimirMensaje("  La opción 3 imprimirá un reporte indicando el tipo de vehículo, placa,"
                          "cantidad de combustible en litros y Bs. y el tiempo en cola.\n");
