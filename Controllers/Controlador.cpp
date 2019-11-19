@@ -11,14 +11,14 @@ Controlador::Controlador() {
 //                  GAS PUMPS METHODS                       ||
 //============================================================
 
-void Controlador::CargarBahias() {
+//This method works only to pre-load two gas pumps for default.
+void Controlador::CargarDosBahias() {
     vest.Limpiar();
     if (mest.Empty()) {
-        //  MBahia mbah;
-        for (int i = 1; i <= 2; ++i) { //porque son 2 bahías
-            //mbah.SetNumeroB(i);
-            mest.InicializarBahia(mbah);
-        }
+            for (int i = 1; i <= 2; ++i) { //porque son 2 bahías
+                //mbah.SetNumeroB(i);
+                mest.InicializarBahia(mbah);
+            }
         vest.ImprimirMensaje("\n ¡Bahías cargadas exitosamente! \n");
         vest.ImprimirNro("\n N# de bahías cargadas: ", mest.ContarBahia());
     } else {
@@ -27,6 +27,19 @@ void Controlador::CargarBahias() {
     vest.Pausa();
 }
 
+void Controlador::CargarBahias() {
+    vest.Limpiar();
+    if (mest.Empty() || !this->check) {
+        for (int i = 1; i <= 2; ++i) { //porque son 2 bahías
+            //mbah.SetNumeroB(i);
+            mest.InicializarBahia(mbah);
+        }
+        this->check = true;
+        vest.ImprimirMensaje("\n ¡Bahías cargadas exitosamente! \n");
+        vest.ImprimirNro("\n N# de bahías cargadas: ", mest.ContarBahia());
+    }
+    vest.Pausa();
+}
 void Controlador::IncluirBahia() {
     vest.Limpiar();
     if (mest.Empty()) {
@@ -40,9 +53,10 @@ void Controlador::IncluirBahia() {
                                     "2.Cargar cantidad deseada. \n", 1, 2);
         int b = 0;
         if (a == 1) {
+            this->check = false;
             CargarBahias();
             b = vest.LeerValidarNro("\n ¿Agregar más bahías? 1.Si 2.No \n", 1, 2);
-        }  if (b == 1){
+        }  if (a == 2 || b == 1){
             if (!mest.Full()) {
                 int numbah = vest.LeerNro("\n  ¿Cuántas bahías desea incluir? : ");
                 for (int i = 1; i <= numbah; ++i) {
@@ -53,7 +67,7 @@ void Controlador::IncluirBahia() {
                     // vest.ImprimirMensaje("\n ¡BAHIA N°"+ i +"CARGADA EXITOSAMENTE! \n");
                 }
                 vest.ImprimirNro("\n Bahía N°\n", mest.ContarBahia());
-                vest.ImprimirMensaje("\n ¡Bahías cargadas exitosamente! \n");
+                vest.ImprimirMensaje("\n ¡Bahía(s) cargada(s) exitosamente! \n");
                 //vest.ImprimirNro("\n N# de Bahías \n", mbah.GetNumeroB());
             }
         }
@@ -203,7 +217,7 @@ void Controlador::OpcionBahia() {
         vg.ImprimirLineasBlanco(2);
         vg.Limpiar();
         vg.ImprimirEncabezado("\n      M E N U  B A H I A\n", "      =======  ===============");
-        vg.ImprimirMensaje("   1. Cargar Bahías\n"); //carga dos bahias, para el inicio
+        vg.ImprimirMensaje("   1. Cargar Bahías. (Esta opción carga solo dos bahías de manera predeterminada).\n"); //carga dos bahias, para el inicio
         vg.ImprimirMensaje("   2. Incluir Bahía\n"); //para incluir una bahia a la vez
         vg.ImprimirMensaje("   3. Modificar Bahía\n");
         vg.ImprimirMensaje("   4. Consultar Bahía\n");

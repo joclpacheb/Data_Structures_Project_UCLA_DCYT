@@ -29,6 +29,7 @@ public:
     void OpcionSalir();
 
     //Bahia Methods
+    void CargarDosBahias();
     void CargarBahias();
     void IncluirBahia();
     void ConsultarBahia();
