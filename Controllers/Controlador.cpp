@@ -145,21 +145,11 @@ void Controlador::EliminarBahia() {
         }
 
 
-        }
-
     }
 
+}
 
-/*void Controlador::Report() {
-    if (this->chequeocajas && this->chequeocarritos) {
-        long numcaja;
-        VCajaRegistradora vcaj;
-        numcaja = vsup.LeerValidarNro("\n  Que caja quieres CERRAR (1,5) : ",1,5);
-        MCajaRegistradora mcaj = msup.getCajaRegistradora(numcaja);
-        vcaj.ImprimirCajaR(mcaj.getContCarritosAtendidos(), mcaj.getContProductosVendidos(), mcaj.getAcumVentas());
-    }else{
-        vsup.ImprimirMensaje("\n TIENEN QUE ESTAR PROCESADOS LOS ARTICULOS \n");
-    }*/
+
 //============================================================
 //                  VEHICLE METHODS                         ||
 //============================================================
@@ -191,13 +181,14 @@ void Controlador::AddCarToQueue() { //añadir vehículo a cola
                         //vector<int> auxvecs;
                         mveh.SetVecS(w, j);
                         //mveh.setVecSize(auxvecs);
-
+                        mveh.SetTipo(opc);
                         // vector <int> auxvec;
                         // auxvec.push_back(mveh.GetVecS(w));
                     } else {
                         w++;
                         j = 1;
                         mveh.SetVecS(w, j);
+                        mveh.SetTipo(opc);
                         j = 0;
                     }
                     break;
@@ -205,12 +196,14 @@ void Controlador::AddCarToQueue() { //añadir vehículo a cola
                     w++;
                     j = 2;
                     mveh.SetVecS(w, j);
+                    mveh.SetTipo(opc);
                     j = 0;
                     break;
                 case 3:
                     w++;
                     j = 2;
                     mveh.SetVecS(w, j);
+                    mveh.SetTipo(opc);
                     j = 0;
                     break;
             }
@@ -220,20 +213,29 @@ void Controlador::AddCarToQueue() { //añadir vehículo a cola
             ConsultarBahia();
             //numbahia = vest.LeerValidarNro("\n  ¿A cuál bahía quieres pasar? (1-2) : ", 1, 2);
             vest.Pausa();
-            numbahia = vest.LeerValidarNro("\n  ¿A cuál bahía quieres pasar? : ", 1, mest.ContarBahia());
+            numbahia = vest.LeerValidarNro("\n  ¿A cuál bahía quieres pasar? : ", 1, 2);
             mbahaux = mest.GetBahia(numbahia);
             //I want to validate whether the gas pumps are available or not. If I have time I'll do it.
             numcola = vest.LeerValidarNro("\n  ¿Cola 1.Derecha o 2.Izquierda? (1-2) : ", 1, 2);
-            hora = vest.LeerNroDecimal("\n Hora de llegada: si es 4:30pm ingrese 16.5 formato militar ");
+            //hora = vest.LeerNroDecimal("\n Hora de llegada: si es 4:30pm ingrese 16.5 formato militar ");
             //la hora se podria ingresar en otro formato? lo deje decimal..
             if (numcola == 1) {
-                mveh.InsertTime(hora);
-                mbahaux.RInsertVehicle(mveh);
-                mest.SetBahia(numcola, mbahaux);
+
+                vest.ImprimirMensaje("\n Test2 \n");
+                if(mbah.REmpty()) {
+                    //mveh.InsertTime(hora);
+                    //mbahaux.RInsertVehicle(mveh);
+                    //mest.SetBahia(numcola, mbahaux);
+                    vest.ImprimirMensaje("\n Test \n");
+                }
             } else {
-                mveh.InsertTime(hora);
-                mbahaux.LInsertVehicle(mveh);
-                mest.SetBahia(numcola, mbahaux);
+                if (mbah.LEmpty()) {
+                    // mveh.InsertTime(hora);
+                    mbahaux.LInsertVehicle(mveh);
+                    mest.SetBahia(numcola, mbahaux);
+                    vest.ImprimirMensaje("\n Test3 \n");
+                }
+                vest.ImprimirMensaje("\n Test4 \n");
             }
         }
         vest.ImprimirMensaje("\n ¡Vehículo(s) añadido(s) en cola exitosamente! \n");
@@ -260,12 +262,31 @@ void Controlador::ProcessVehicleInQueue() { //procesar vehículo en cola.
         numcola = vest.LeerValidarNro("\n  ¿Cola 1.Derecha o 2.Izquierda? (1-2) : ", 1, 2);
         //Also, I want to show how many vehicles are in queue if I have the time. And validate if there are vehicles at all.
         if (numcola == 1) {
-            int ve = vest.LeerNro("\n  ¿Cuántos vehículos quieres procesar? ");
+            int ve = vest.LeerValidarNro("\n  ¿Cuántos vehículos quieres procesar? (1-2) : ",1,2);
             //Validate the number of vehicle cause if there's only one in queue you can't process 2.
-            for (int i = 0; i < ve; ++i) {
-                hora = vest.LeerNroDecimal("\n  Hora de salida: ");
+            //Validate the type of vehicles, it can't enter two with different types.
+            /*  for (int k = 0; k < ve; ++k) {
+                  if (mveh.GetTipo() == 1) {
+
+                  } else {
+                      if (mveh.GetTipo() == 2 or mveh.GetTipo() == 3) {
+
+                      }
+                  }
+              }*/
+
+            do{
+                int a = vest.LeerNro("\n  Introduzca cantidad de litros actual en su tanque : ");
                 int li = vest.LeerValidarNro("\n1.Llenar full el tanque. \n"
                                              "2.Llenar cantidad deseada. \n", 1, 2);
+                if(li == 1){
+                    int c = mveh.GetTanque()-a;
+                    //  mveh.SetTanqueFull(c);
+                }if (li == 2){
+                    int x = vest.LeerNroDecimal("\n  Cuanto desea echar?: ");
+                    //mveh.SetTanqueFull(x);
+                }
+                hora = vest.LeerNroDecimal("\n  Hora de salida: ");
                 //Cola por la derecha
                 mbahaux = mest.GetBahia(numbah);
                 if (mbahaux.RProcessVehicles()) { // I need to implement that method in Mbahia
@@ -277,7 +298,7 @@ void Controlador::ProcessVehicleInQueue() { //procesar vehículo en cola.
                     vest.ImprimirMensaje("\n No hay más vehículos que procesar! \n");
                 }
                 numbah = vest.LeerValidarNro("\n  Qué bahía quieres procesar? (1,2) 3 para salir : ", 1, 2);
-            }
+            } while(numbah);
         } else {
             //cola por la izquierda
             do {
