@@ -20,8 +20,10 @@ public:
     bool Empty();
     bool Full();
     int ContarBahia();
-    //bool Search(MBahia &mbah);
+    bool Search(MBahia &mbah);
     bool SearchByNumber(MBahia &mbah, int n);
-};
+    void DeleteBahia(MBahia &mbah);
+
+    };
 
 #endif //DATA_STRUCTURES_PROJECT_UCLA_DCYT_MESTACION_H

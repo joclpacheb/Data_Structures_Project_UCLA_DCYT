@@ -49,9 +49,12 @@ bool MEstacion::Empty(){
 bool MEstacion::Full(){
     return ListBahia.Llena();
 }
-/*bool MEstacion::Search(MBahia &mbah){
-    ListBahia.Buscar(mbah);
-}*/
+bool MEstacion::Search(MBahia &mbah){
+//   if(ListBahia.Buscar(mbah.GetNumeroB())
+    return true;
+  // else return false;
+}
+
 bool MEstacion::SearchByNumber(MBahia &mbah, int n) {
     nodo<MBahia> *auxappbah = ListBahia.ObtPrimero(); // cambiando buscar por auxiliar
     while(auxappbah != nullptr) {  //preguntas si no esta apuntando a null, o sea, que si hay nodos
@@ -66,3 +69,27 @@ bool MEstacion::SearchByNumber(MBahia &mbah, int n) {
     }
     return false;
 }
+
+void MEstacion::DeleteBahia(MBahia &mbah) {
+   if(!ListBahia.Vacia()) {
+     //  if (ListBahia.Buscar(mbah.GetNumeroB())) {
+           Lista<MBahia> ListaAux;
+           ListaAux = ListBahia;
+           nodo<MBahia> *ant, *act; // anterior y actual
+
+           //antes de eliminar, debo conocer tanto el anterior como el actual
+           ant = ListaAux.ObtPrimero(); //anterior
+           act = ListaAux.ObtPrimero();//actual
+           //inician siendo iguales al primero de la lista...
+           while (mbah.GetNumeroB() != ListaAux.ObtInfo(act).GetNumeroB()) {
+               //hasta que el numero de la bahia a eliminar coincida con act
+               ListaAux.AsigProx(ant, act); //mi anterior va a ser mi actual
+               ListaAux.AsigProx(act, ListBahia.ObtProx(act)); // mi actual sera el prox al antiguo actual
+           }
+          //ya se tiene el actual buscado y su anterior
+           ListBahia.Eliminar(act, mbah, ant);
+       }
+   //}
+   };
+
+

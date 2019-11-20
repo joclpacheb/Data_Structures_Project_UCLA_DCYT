@@ -41,6 +41,7 @@ public:
          int Contar();
          nodo<Tipo>* Buscar(Tipo Valor);
          void pasarListaAux(Lista<Tipo> &listaFuente, Lista<Tipo> &listaDestino);
+         bool Eliminar(Apuntador p,Tipo &valor, Apuntador an);
 };
 
 //#include "Lista.cpp"

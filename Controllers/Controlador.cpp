@@ -129,8 +129,26 @@ void Controlador::ModificarBahia() {
 
 //This method will delete gas pumps. It needs to validate if there are queues of vehicles before deleting.
 void Controlador::EliminarBahia() {
+    if (mest.Empty()){
+        vest.ImprimirMensaje("Actualmente no hay bahias disponibles.");
+    }else{
+        ConsultarBahia();
+        int b = vest.LeerNro("\n Ingrese el numero de la bahia a eliminar: ");
+        mbah= mest.GetBahia(b);
+        if (mest.Search(mbah)) {
+            int a = vest.LeerValidarNro("\n ¿Está seguro que quiere eliminar la? 1.Si 2.No ", 1, 2);
+            if (a == 1) {
+                mest.DeleteBahia(mbah);
+                vest.ImprimirMensaje("La bahia fue eliminada satisfactoriamente \n");
 
-}
+            }
+        }
+
+
+        }
+
+    }
+
 
 /*void Controlador::Report() {
     if (this->chequeocajas && this->chequeocarritos) {

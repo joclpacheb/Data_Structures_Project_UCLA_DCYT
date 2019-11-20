@@ -172,7 +172,17 @@ int Lista<Tipo>::Contar(){
 	}
 	return cont;
 }
-
+template <class Tipo>
+bool Lista<Tipo>::Eliminar(Apuntador p,Tipo &valor, Apuntador an){
+    if (p==NULL)
+        return false;
+    else{
+        valor=p->info;
+        an->prox=p->prox;
+        delete p;
+        return true;
+    }
+}
 template <class Tipo>
 nodo<Tipo>* Lista<Tipo>::Buscar(Tipo Valor)
 {
@@ -189,6 +199,7 @@ nodo<Tipo>* Lista<Tipo>::Buscar(Tipo Valor)
 	}
 
 }
+
 
 template <class Tipo>
 void Lista<Tipo>::pasarListaAux(Lista<Tipo> &listaFuente, Lista<Tipo> &listaDestino) {
