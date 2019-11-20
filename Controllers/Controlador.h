@@ -18,6 +18,7 @@ private:
 
     VEstacion vest;
     bool check;
+    int j,w;
 public:
     Controlador();
 
