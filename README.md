@@ -4,7 +4,7 @@
     <tr>
         <!-- Do not translate this table -->
         <td><a href="./README.md"> English </a></td>
-        <td><a href="./README.es.md"> Spanish </a></td>
+        <td><a href="./README-ES.md"> Spanish </a></td>
     </tr>
 </table>
 
