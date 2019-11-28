@@ -8,7 +8,7 @@
     </tr>
 </table>
 
-An assignment project coded for the subject Data Structures I, for the Engineering Informatics career of the Universidad Centroccidental Lisandro Alvarado, Venezuela. The code is in C++, the project demonstrates the reiterative use of Stacks, Queues and Lists in a hypothetic Gas Station problem.
+An assignment project coded for the subject Data Structures I, for the Engineering Informatics career of the Universidad Centroccidental Lisandro Alvarado, Venezuela. The code is in C++ using the MVC Design Pattern, and the project demonstrates the reiterative use of Stacks, Queues and Lists in a hypothetic Gas Station problem.
 
 ## Authors
 
